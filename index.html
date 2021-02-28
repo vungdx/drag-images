@@ -1,0 +1,97 @@
+<!-- Keo tha 1 element -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            width: auto;
+            grid-gap: 10px;
+            background: white;
+            height: auto;
+        }
+
+        div {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            padding: 40px;
+            position: relative;
+            border: none;
+            border-radius: 20px;
+            background-image: linear-gradient(to top, rgb(63, 81, 177) 0%, rgb(90, 85, 174) 13%, rgb(123, 95, 172) 25%, rgb(143, 106, 174) 38%, rgb(168, 106, 164) 50%, rgb(204, 107, 142) 62%, rgb(241, 130, 113) 75%, rgb(243, 164, 105) 87%, rgb(247, 201, 120) 100%);
+        }
+
+        /* .droptarget img:hover {
+            box-shadow: 0px 0px 5px gray;
+            width: 250px;
+            height: 250px;
+            transition: all .5s;
+        } */
+
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        /* div:first-of-type img {
+            border-radius: 50%        
+        }
+        div:last-of-type img {
+            border-radius: 50%;
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="droptarget" ondragover="allowDrop(event)" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+        <!-- <p ondragstart="dragStart(event)" draggable="true" id="img">XXX</p> -->
+        <img ondragstart="dragStart(event)" draggable="true" id="img"
+            src="https://st3.depositphotos.com/3037725/14198/v/1600/depositphotos_141982124-stock-illustration-faces-avatar-in-circle-portrait.jpg" alt="">
+    </div>
+    <div class="container">
+        <div class="droptarget" ondragover="allowDrop(event)" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div>
+        <div class="droptarget" ondragover="allowDrop(event)" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div>
+        <div class="droptarget" ondragover="allowDrop(event)" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div>
+    </div>
+    <div class="droptarget" ondragover="allowDrop(event)" ondrop="drop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)"></div>
+
+</body>
+<script>
+    //  <img>
+    function dragStart(event) {
+        event.dataTransfer.setData("Text", "img");
+    };
+
+    // <div>
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+
+    function drop(event) {
+        // document.querySelectorAll("div")[1].style.border = "1px solid red";
+        event.target.appendChild(document.getElementById("img"));
+        if (event.target.className == "droptarget") {
+            event.target.style.transform = "scale(1)";
+        }
+    }
+
+    function dragEnter(event) {
+        if (event.target.className == "droptarget") {
+            event.target.style.transform = "scale(1.2)";
+        }
+    }
+    function dragLeave(event) {
+        if (event.target.className == "droptarget") {
+            event.target.style.transform = "scale(1)";
+        }
+    }
+</script>
+
+</html>
